@@ -1,0 +1,16 @@
+{
+  "name": "first-personal-blog",
+  "private": true,
+  "version": "0.0.0",
+  "description": "FirstBlog is a completely responsive personal blog website that is compatible with all mobile devices, has **Dark and light themes**, and is built using HTML, CSS, and JavaScript.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^5.0.8",
+    "prettier": "3.1.1"
+  }
+}

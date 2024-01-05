@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Building a Restful CRUD API with Node JS, Express, and MongoDB
+    </title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link rel="stylesheet" href="/stylee.css" />
+    <link
+      rel="shortcut icon"
+      href="./assets/images/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="light-theme">
+    <!--
+    - #HEADER
+  -->
+
+        <h1 class="bg">
+          Building a Restful CRUD API with Node JS, Express, and MongoDB
+        </h1>
+
+
+      <article>
+        <img src="assets/images/restful-01.webp" alt="Accessibility" />
+            <p>
+            Currently, most of the websites operate on an API-based backend
+            structure, where we just send a request from the front end of the
+            website by calling an API and obtaining the required results. In this
+            blog, we are going to build a simple CRUD (Create, Read, Update and
+            Delete) app with the application of Node JS, Express JS, and MongoDB
+            from the basics. Before we jump into the application, let’s look into
+            the tools we are going to use. <br />
+
+            <a
+                href="https://expressjs.com/?ref=techvblogs.com"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">Express</strong></a
+            >
+            is one of the most popular web frameworks for node.js. It is built on
+            top of the node.js HTTP module and adds support for routing,
+            middleware, view system, etc. It is very simple and minimal, unlike
+            other frameworks that try to do way too much, thereby reducing the
+            flexibility for developers to have their own design choices. <br />
+
+            <a
+                href="https://mongoosejs.com/?ref=techvblogs.com"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">Mongoose </strong></a
+            >
+            is an ODM (Object Document Mapping) tool for Node.js and MongoDB. It
+            helps you convert the objects in your code to documents in the
+            database and vice versa. Mongoose provides a straightforward,
+            schema-based solution to model your application data. It includes
+            built-in type casting, validation, query building, business logic
+            hooks and more, out of the box. <br />
+
+            <a
+                href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">CRUD</strong></a
+            >
+            is an acronym for Create, Read, Update and Delete. It is a set of
+            operations we get servers to execute (POST, GET, PUT and DELETE
+            requests respectively). This is what each operation does: <br />
+            </p>
+
+            <p>
+            <strong>Create (POST)</strong> — Make something <br />
+            <strong>Read (GET)</strong> - Get something <br />
+            <strong>Update (PUT)</strong> — Change something <br />
+            <strong>Delete (DELETE)</strong>- Remove something <br />
+            </p>
+
+            <p>
+            Before proceeding to the next section, Please install MongoDB on your
+            machine if you have not done it already. Check out the
+            <a
+                href="https://techvblogs.com/blog/install-mongodb-on-ubuntu-20-04"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">MongoDB installation manual</strong></a
+            >
+            for any help with the installation.
+            </p>
+
+            <p>
+            Also, In this blog, we'll heavily use ES6 features like
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">let</strong></a
+            >,
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">const</strong></a
+            >,
+            <a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">arrow functions</strong></a
+            >,<a
+                href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises"
+                rel="noopener ugc nofollow"
+                target="_blank"
+                ><strong class="under">promises</strong></a
+            >
+            etc. It's good to familiarize yourself with these features.
+            </p>
+
+            <p>
+            In this blog, we'll be building a CRUD App with Node.js, Express, and
+            MongoDB. We'll use Mongoose for interacting with the MongoDB instance.
+            </p>
+
+            <h2>Step 1: Creating the Application</h2>
+            <p>
+            Fire up your terminal and create a new folder for the application.
+            </p>
+            <pre class="ok"><span>mkdir crud-node-express</span></pre>
+            <p>
+            Initialize the application with a <small>package.json</small> file
+            <br />
+            </p>
+            <p>
+            Go to the root folder of your application and type npm init to
+            initialize your app with a <small>package.json</small> file.
+            </p>
+            <pre class="ok"><span>cd crud-node-express <br>npm init</span></pre>
+
+            <p>
+            Note that I’ve specified a file named <small>server.js</small> as the
+            entry point of our application. We’ll create
+            <small>server.js</small> file in the next section.
+            </p>
+
+            <h2>Step 2: Install dependencies</h2>
+            <p>
+            We will need express, mongoose, and body-parser modules in our
+            application. Let’s install them by typing the following command:
+            </p>
+            <pre
+            class="ok"
+            ><span>npm install express body-parser mongoose --save</span></pre>
+
+            <h2>Setting up the Web Server</h2>
+            <p>
+            Let's now create the main entry point of our application. Create a new
+            file named <small>server.js</small> in the root folder of the
+            application with the following contents:
+            </p>
+
+            <pre class="ok"
+                ><span>const express = require('express'); <br>const bodyParser = require('body-parser');<br>const app = express(); <br><br>app.use(bodyParser.urlencoded({ extended: true })) <br><br>app.use(bodyParser.json()) <br><br>app.get('/', (req, res) => {    <br>    res.json({"message": "Hello Crud Node Express"}); <br> }); <br>app.listen(3000, () => { <br>    console.log("Server is listening on port 3000");<br> });
+                </span>
+            </pre>
+
+            <h2>Step 3: Configuring and Connecting to the database</h2>
+            <p>Create a new folder config in the root folder of our application for keeping all the configurations</p>
+
+            <pre
+            class="ok"
+            ><span>mkdir config<br>cd config</span></pre>
+            <p>Now, Create a new file database.config.js inside config folder with the following contents:</p>
+            <pre
+            class="ok"
+            ><span>module.exports = { <br>    url: 'mongodb://localhost:27017/crud-node-express'<br>}</span></pre>
+
+            <p>Please run the server and make sure that you’re able to connect to the database</p>
+            <pre
+            class="ok"
+            ><span>node server.js</span></pre>
+        <h2>Step 4: Create Mongoose Model</h2>
+        <p>
+            <a
+            href="https://mongoosejs.com/docs/models.html"
+            rel="noopener ugc nofollow"
+            target="_blank"
+            ><strong class="under">Models</strong></a
+        > are fancy constructors compiled from Schema definitions. An instance of a model is called a document. Models are responsible for creating and reading documents from the underlying MongoDB database. Create a folder called model inside the app folder. Create a user.js file and paste the below code.
+        </p>
+        <pre
+            class="ok"
+            ><span>var mongoose = require('mongoose');
+    var schema = new mongoose.Schema({
+        email: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        firstName: {
+            type: String,
+            default: ''
+        },
+        lastName: {
+            type: String,
+            default: ''
+        },
+        phone: String,
+    });
+    var user = new mongoose.model('User', schema);
+    module.exports = user;
+            </span>
+        </pre>
+
+        <h2>Conclusion</h2>
+        <p><strong>CRUD API</strong> provides a standard set of operations for interacting with resources or entities in a system. The four fundamental operations—Create, Read, Update, and Delete—enable developers to perform basic data manipulation and management. These operations are typically associated with HTTP methods in RESTful APIs, where resources are identified by URLs.</p>
+        <p>
+            <strong>CRUD APIs</strong> serve as a foundational component in many software systems, offering a standardized way to manage data. When well-designed and implemented, CRUD APIs contribute to the interoperability, maintainability, and scalability of applications.
+        </p>
+        
+      </article>
+
+      <script src="./assets/js/script.js"></script>
+      <script
+        type="module"
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+      ></script>
+      <script
+        nomodule
+        src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+      ></script>
+  </body>
+</html>
