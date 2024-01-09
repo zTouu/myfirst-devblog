@@ -1,5 +1,6 @@
 import { header } from "./components/header";
 import { footer } from "./components/footer";
+import { loadMore } from "./components/loadmore";
 import { marked } from "marked"
 document.body.insertAdjacentHTML('beforeend',await marked.parse('# Marked in the browser\n\nRendered by marked.'));
 
@@ -47,6 +48,9 @@ for (let i = 0; i < themeBtn.length; i++) {
 }
 
 document.body.insertAdjacentHTML('beforeend',footer());
+
+
+document.body.insertAdjacentHTML('beforeend', loadMore());
 
 
 
