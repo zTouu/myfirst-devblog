@@ -25,6 +25,8 @@ dist-ssr
 
 # Ignore file
 package-lock.json
+pnpm-lock.yaml
+main.js
 
 #dependency directories
 node_modules
