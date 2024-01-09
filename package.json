@@ -10,7 +10,10 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^5.0.8",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "vite": "^5.0.8"
+  },
+  "dependencies": {
+    "lodash-es": "^4.17.21"
   }
 }
