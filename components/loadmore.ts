@@ -1,11 +1,9 @@
 export function loadMore(){
-    return `
-    <script>
-      let loadMoreBtn = document.querySelector('.load-more');
+      let loadMoreBtn = document.querySelector('.load-more') as HTMLElement;
       let currentItem = 4;
   
       loadMoreBtn.onclick = () =>{
-        let boxes = [...document.querySelectorAll('.blog .blog-card-group .blog-card')];
+        let boxes = [...document.querySelectorAll('.blog .blog-card-group .blog-card')] as HTMLElement[];
         for (var i = currentItem; i < currentItem + 4; i++){
           boxes[i].style.display = 'grid';
         }
@@ -15,5 +13,5 @@ export function loadMore(){
           loadMoreBtn.style.display = 'none';
         }
       }
-    </script>`
+    
   }
