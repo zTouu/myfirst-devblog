@@ -1,6 +1,6 @@
 import { header } from "./components/header";
 import { footer } from "./components/footer";
-//import { loadMore } from "./components/loadmore";
+//import { loadMore } from "./components/loadMore";
 //import { marked } from "marked"
 //loadMore()
 
