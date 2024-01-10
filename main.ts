@@ -2,10 +2,11 @@ import { header } from "./components/header";
 import { footer } from "./components/footer";
 import { loadMore } from "./components/loadmore";
 import { marked } from "marked"
+loadMore()
+
 document.body.insertAdjacentHTML('beforeend',await marked.parse('# Marked in the browser\n\nRendered by marked.'));
 
 document.body.insertAdjacentHTML("afterbegin",header());
-
 
 // navbar variables
 const nav = document.querySelector('.mobile-nav');
@@ -40,11 +41,8 @@ for (let i = 0; i < themeBtn.length; i++) {
       // it toggles classes between `light` & `dark` for all `theme-btn`.
       themeBtn[i].classList.toggle('light');
       themeBtn[i].classList.toggle('dark');
-
     }
-
   })
-
 }
 
 document.body.insertAdjacentHTML('beforeend',footer());
