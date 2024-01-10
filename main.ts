@@ -50,8 +50,5 @@ for (let i = 0; i < themeBtn.length; i++) {
 document.body.insertAdjacentHTML('beforeend',footer());
 
 
-document.body.insertAdjacentHTML('beforeend', loadMore());
-
-
 
 
