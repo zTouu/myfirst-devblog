@@ -1,12 +1,11 @@
 import { header } from "./components/header";
 import { footer } from "./components/footer";
-import { loadMore } from "./components/loadmore";
-import { marked } from "marked"
-loadMore()
+//import { loadMore } from "./components/loadmore";
+//import { marked } from "marked"
+//loadMore()
 
-document.body.insertAdjacentHTML('beforeend',await marked.parse('# Marked in the browser\n\nRendered by marked.'));
+//document.body.insertAdjacentHTML('beforeend',await marked.parse('# Marked in the browser\n\nRendered by marked.'));
 
-document.body.insertAdjacentHTML("afterbegin",header());
 
 // navbar variables
 const nav = document.querySelector('.mobile-nav');
@@ -36,9 +35,6 @@ for (let i = 0; i < themeBtn.length; i++) {
     }
   })
 }
-
-document.body.insertAdjacentHTML('beforeend',footer());
-
 
 
 
