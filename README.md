@@ -15,7 +15,7 @@ To install **FirstBlog**, follow these steps:
 
 --> git clone repository_url
 
-git clone https://github.com/zTouu/vitoufirst-blog
+git clone https://github.com/zTouu/myfirst-devblog
 
 ## License
 
