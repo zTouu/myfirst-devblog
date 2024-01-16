@@ -1,7 +1,0 @@
-{
-    "compilerOptions": {
-        "module": "ESNext",
-        // other options...
-    },
-    // other configurations...
-}
