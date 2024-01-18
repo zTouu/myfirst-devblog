@@ -11,7 +11,7 @@ navPart()
 document.getElementById('footer')?.insertAdjacentHTML('beforebegin', footer());
 
 //content
-function loadAndRenderPage(pathname: string) {
+function loadAndRenderPage(pathname: string = location.pathname) {
   if (pathname == "/") {
     pathname = "/index.html"
   }
@@ -19,13 +19,13 @@ function loadAndRenderPage(pathname: string) {
   fetch(url)
     .then((res) => res.text())
     .then((text) => {
-      console.log(text)
+      //console.log(text)
       document.getElementById('content')?.insertAdjacentHTML('beforebegin', text)
       loadMore()
     })
 }
 
 window.addEventListener('locationchange', function () {
-  loadAndRenderPage(location.pathname)
+  loadAndRenderPage()
 });
-loadAndRenderPage(location.pathname)
+loadAndRenderPage()
