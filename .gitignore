@@ -27,7 +27,6 @@ dist-ssr
 package-lock.json
 pnpm-lock.yaml
 main.js
-tsconfig.json
 
 #dependency directories
 node_modules
