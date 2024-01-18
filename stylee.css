@@ -29,6 +29,7 @@ h1, h2, h3 {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
     padding-top: 30px;
+    color: var(--foreground-primary);
 }
 .bg{
     width: 100%;
@@ -44,9 +45,6 @@ h1 {
 h2{
     padding: 20px;
     font-weight: 730;
-}
-h1, h2, h3{
-    color: var(--foreground-primary);
 }
 p{
     color: var(--foreground-primary);
