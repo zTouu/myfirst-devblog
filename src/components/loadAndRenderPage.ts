@@ -8,7 +8,7 @@ export function loadAndRenderPage(pathname: string = location.pathname) {
   fetch(url)
     .then((res) => res.text())
     .then((text) => {
-      document.getElementById('content')?.insertAdjacentHTML('beforebegin', text)
-      loadMore()
+      document.getElementById('content')?.insertAdjacentHTML('beforeend', text)
+      //loadMore()
     })
 }
