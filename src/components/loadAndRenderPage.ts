@@ -10,5 +10,5 @@ export function loadAndRenderPage(pathname: string = location.pathname) {
     .then((text) => {
       document.getElementById('content')?.insertAdjacentHTML('beforebegin', text)
       loadMore()
-  })
+    })
 }
